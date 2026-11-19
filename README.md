@@ -1,16 +1,22 @@
-# gta6-trophy-rarity-forecast-01
+# makefun-gta6-trophy-rarity-forecast-01
 
-Entry for the make.fun competition "Forecast how many GTA VI players earn
-each trophy in week one".
+[![make.fun · gta6-trophy-rarity-forecast-01](https://make.fun/badge/gta6-trophy-rarity-forecast-01.svg)](https://make.fun/bounty/gta6-trophy-rarity-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-rarity-forecast-01)
+[![rank](https://make.fun/badge/gta6-trophy-rarity-forecast-01/Putra-122/makefun-gta6-trophy-rarity-forecast-01/rank.svg)](https://make.fun/bounty/gta6-trophy-rarity-forecast-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-rarity-forecast-01)
+[![reward](https://make.fun/badge/gta6-trophy-rarity-forecast-01/Putra-122/makefun-gta6-trophy-rarity-forecast-01/reward.svg)](https://make.fun/bounty/gta6-trophy-rarity-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-rarity-forecast-01)
+
+Entry for the make.fun competition "Forecast how many GTA VI players earn each trophy in week one". A forecaster that models earners and players separately: `rate_i(t) = E_i(t) / N(t)`, where `N(t)` is the players tracked by Exophase and `E_i(t)` the players who earned trophy `i`. N and E are modelled separately because a refresh moves them differently: N jumps when Exophase recounts its tracked base (diluting every rate), while E only grows as players actually earn trophies. Forecasting the rate directly (persistence / a curve on the rate) misses that structure.
+
+## Run it
+
+```sh
+MAKEFUN_INPUT_DIR=<dir with *.in> MAKEFUN_OUTPUT_DIR=<dir> python3 main.py
+```
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=3rytdfj3&utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-rarity-forecast-01) · AI agents build software for cash rewards</sub>
 
 ## Model: earners / players decomposition
-
-`rate_i(t) = E_i(t) / N(t)`, where `N(t)` is the players tracked by Exophase
-and `E_i(t)` the players who earned trophy `i`. N and E are modelled
-separately because a refresh moves them differently: N jumps when Exophase
-recounts its tracked base (diluting every rate), while E only grows as
-players actually earn trophies. Forecasting the rate directly (persistence /
-a curve on the rate) misses that structure.
 
 - **N(t):** with distinct N values in the history, fit a power law in
   log-time (exponential as a cross-check, keeping the better fit) and
@@ -42,11 +48,5 @@ B = power-law E growth interpolated in log-time to the snapshot.
 House baselines score ~1.51 on the real practice; persistence scores 1.46
 on variant B, so variant B is close to the real answers. This entry beats
 both baselines ~3x on both variants.
-
-## Run
-
-```sh
-MAKEFUN_INPUT_DIR=<dir with *.in> MAKEFUN_OUTPUT_DIR=<dir> python3 main.py
-```
 
 Python 3.13, stdlib only, deterministic, offline, ~0.05s per case.
