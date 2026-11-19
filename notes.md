@@ -48,7 +48,7 @@ clearly beats the baselines -> submit.
 
 ## Repo / submission
 - **Repo:** https://github.com/Putra-122/makefun-gta6-trophy-rarity-forecast-01
-- **Commit SHA:** 992c2e07b741849efc1160bb64c23f043849b1a8 (main.py, LICENSE MIT,
+- **Commit SHA:** 0a154ac6f798a56a6a8e99ac40afb9a849090b61 (main.py unchanged since 992c2e07b741849efc1160bb64c23f043849b1a8) (main.py, LICENSE MIT,
   README.md, .makefun/owner.json wallet xfazjnk39LekFTxvEGhGVcAtmdpCtQYbx4KzztVeFbU)
 - **Quota (checked 2026-11-20 ~00:00 UTC):** day cap 3, taken 0, left 3;
   hard limit 20 left; can_submit true.
